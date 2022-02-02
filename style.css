@@ -1,20 +1,50 @@
 body {
     background-color: #EEF9BF;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
-    height: 143px;
+    height: auto;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #75B79E;
     font-size: 56px;
     font-style: normal;
     font-weight: 700;
     line-height: 66px;
     letter-spacing: -0.004em;
-    text-align: left;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+
+.cartas {
+    height: 80vh;
+    width: 80vw;
+    left: 122px;
+    top: 150px;
+    border-radius: 5px;
+    display: flex;
+    align-items: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.umacarta {
+    height: 146px;
+    min-width: 117px;
+    border-radius: 5px;
+    background-color: #A7E9AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 17px;
 }
