@@ -50,7 +50,7 @@ header {
     margin: 17px;
     border: 1px solid #99CEA8;
     position: relative;
-    transition: all .5s;
+    transition: all 0.5s;
     transform-style: preserve-3d;
 }
 
@@ -67,16 +67,13 @@ header {
     transition: all .5s;
     transform-style: preserve-3d;
     border: 2px solid #99CEA8;
+
 }
 
 img {
     height: 100px;
     width: 100px;
     border-radius: 5px;
-}
-
-.hidden {
-    display: none;
 }
 
 .rotacionar{
