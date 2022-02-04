@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
     background-color: #EEF9BF;
     font-family: 'Roboto', sans-serif;
@@ -29,9 +33,6 @@ header {
 .cartas {
     height: 80vh;
     width: 80vw;
-    left: 122px;
-    top: 150px;
-    border-radius: 5px;
     display: flex;
     align-items: space-around;
     justify-content: space-around;
@@ -47,4 +48,37 @@ header {
     align-items: center;
     justify-content: center;
     margin: 17px;
+    border: 1px solid #99CEA8;
+    position: relative;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+    border: 2px solid #99CEA8;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.rotacionar{
+    transform: rotateY(180deg);
 }
