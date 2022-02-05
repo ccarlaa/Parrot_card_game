@@ -6,6 +6,8 @@ let imagenscolhidas = []
 let cartaclicada
 let primeiracarta
 let segundacarta 
+let comparacao
+let bloquearcartas
 
 // ---------PROMPT - QUANTIDADE DE CARTAS----------
 
@@ -32,7 +34,7 @@ imagenscolhidas.sort(comparador)
 
 for(i = 0; i < qtdcartas; i++){          
     div[i] =(`
-    <div class="umacarta">
+    <div class="umacarta" data-cartabla = "${imagenscolhidas[i]}">
         <div class="frente face rotacionar">
             <img src="arquivosuteis/${imagenscolhidas[i]}.gif">
         </div>
@@ -45,23 +47,48 @@ for(i = 0; i < qtdcartas; i++){
     addcartas.innerHTML+=div[i];
 }
 
-// -----------ROTACIONAR CARTAS AO CLICAR 
+// ----------- FUNCIONAMENTO DO JOGO -----------
 
 let todasascartas = document.querySelectorAll(".umacarta")
 
 function virarCarta(){
-    if(!primeiracarta){
-        primeiracarta = this;
+    if(bloquearcartas){
         return false;
     }
-
+    this.classList.add("rotacionar");
+    if(!primeiracarta){
+        primeiracarta = this;
+        primeiracarta.classList.add("rotacionar");
+        return false;
+    }
     segundacarta = this;
+    compararcartas()
+}
 
-    if(primeiracarta!=null && segundacarta!=null){
-        this.classList.toggle("rotacionar");
-        primeiracarta.classList.toggle("rotacionar")
+todasascartas.forEach(carta => carta.addEventListener('click', virarCarta));
+
+function compararcartas(){
+    comparacao = primeiracarta.dataset.cartabla === segundacarta.dataset.cartabla;
+    console.log(comparacao)
+    if(comparacao == false){
+        cartasDiferentes()
+    }else{
+        primeiracarta.removeEventListener('click',virarCarta);
+        segundacarta.removeEventListener('click',virarCarta);
+        limparVariaveis()
     }
 }
 
-todasascartas.forEach(carta => carta.addEventListener('click', virarCarta))
+function cartasDiferentes(){
+    bloquearcartas = true
+    setTimeout(() => {
+    primeiracarta.classList.remove("rotacionar");
+    segundacarta.classList.remove("rotacionar");
+    bloquearcartas = false;
+    limparVariaveis()},1000)
+}
 
+function limparVariaveis(){
+    primeiracarta=null;
+    segundacarta=null;
+}
