@@ -8,11 +8,16 @@ let primeiracarta
 let segundacarta 
 let comparacao
 let bloquearcartas
+let numerodejogas = 0;
+let fimdejogo = 0;
+let acertos = 0;
+let novapartida = "";
+
 
 // ---------PROMPT - QUANTIDADE DE CARTAS----------
 
 while(qtdcartas<4 || qtdcartas>15 || par!==0){
-    qtdcartas=prompt("Quantas cartas...?");
+    qtdcartas=prompt("Quantas cartas você quer jogar?");
     qtdcartas=parseInt(qtdcartas);
     par = qtdcartas%2;
 }
@@ -28,7 +33,7 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
-imagenscolhidas.sort(comparador)
+imagenscolhidas.sort(comparador);
 
 // ----------CRIAR DIVS DINÂMICAS ------------
 
@@ -52,6 +57,7 @@ for(i = 0; i < qtdcartas; i++){
 let todasascartas = document.querySelectorAll(".umacarta")
 
 function virarCarta(){
+    console.log(numerodejogas)
     if(bloquearcartas){
         return false;
     }
@@ -62,33 +68,50 @@ function virarCarta(){
         return false;
     }
     segundacarta = this;
-    compararcartas()
+    compararcartas();
 }
 
 todasascartas.forEach(carta => carta.addEventListener('click', virarCarta));
 
 function compararcartas(){
     comparacao = primeiracarta.dataset.cartabla === segundacarta.dataset.cartabla;
-    console.log(comparacao)
     if(comparacao == false){
-        cartasDiferentes()
+        cartasDiferentes();
     }else{
         primeiracarta.removeEventListener('click',virarCarta);
         segundacarta.removeEventListener('click',virarCarta);
-        limparVariaveis()
+        limparVariaveis();
+        acertos +=1;
     }
+    finalizarpartida();
+    fimdejogo +=1;
 }
 
 function cartasDiferentes(){
-    bloquearcartas = true
+    bloquearcartas = true;  
     setTimeout(() => {
     primeiracarta.classList.remove("rotacionar");
     segundacarta.classList.remove("rotacionar");
     bloquearcartas = false;
-    limparVariaveis()},1000)
+    limparVariaveis();},1000);
 }
 
 function limparVariaveis(){
     primeiracarta=null;
     segundacarta=null;
+}
+
+function finalizarpartida(){
+    setTimeout(() => {if(acertos == parseInt(qtdcartas)/2){
+                        alert("Você ganhou em "+fimdejogo+" jogadas!")
+                        começarnovapartida();}},1000);
+}
+
+function começarnovapartida() {
+    novapartida=prompt("Gostaria de começar uma nova partida? (sim/não)")
+    if(novapartida === "sim"){
+        window.location.reload()
+    }else{
+        alert("Tão ta baum 😅")
+    }
 }
