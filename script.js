@@ -12,6 +12,10 @@ let numerodejogas = 0;
 let fimdejogo = 0;
 let acertos = 0;
 let novapartida = "";
+let relogio = 0;
+let tempofinal = 0
+let contagem = 0;
+
 
 
 // ---------PROMPT - QUANTIDADE DE CARTAS----------
@@ -56,7 +60,7 @@ for(i = 0; i < qtdcartas; i++){
 
 let todasascartas = document.querySelectorAll(".umacarta")
 
-function virarCarta(){
+function virarCarta(){ //Virar carta ao clicar 
     console.log(numerodejogas)
     if(bloquearcartas){
         return false;
@@ -73,11 +77,11 @@ function virarCarta(){
 
 todasascartas.forEach(carta => carta.addEventListener('click', virarCarta));
 
-function compararcartas(){
+function compararcartas(){ // Verificar se as cartas selecionadas são iguais
     comparacao = primeiracarta.dataset.cartabla === segundacarta.dataset.cartabla;
-    if(comparacao == false){
+    if(comparacao == false){ 
         cartasDiferentes();
-    }else{
+    }else{ // Se as cartas são iguais 
         primeiracarta.removeEventListener('click',virarCarta);
         segundacarta.removeEventListener('click',virarCarta);
         limparVariaveis();
@@ -87,7 +91,7 @@ function compararcartas(){
     fimdejogo +=1;
 }
 
-function cartasDiferentes(){
+function cartasDiferentes(){ //Se as cartas são diferentes 
     bloquearcartas = true;  
     setTimeout(() => {
     primeiracarta.classList.remove("rotacionar");
@@ -101,17 +105,36 @@ function limparVariaveis(){
     segundacarta=null;
 }
 
-function finalizarpartida(){
+function finalizarpartida(){ //Alerta de partida finalizada 
     setTimeout(() => {if(acertos == parseInt(qtdcartas)/2){
-                        alert("Você ganhou em "+fimdejogo+" jogadas!")
-                        começarnovapartida();}},1000);
+                        tempofinal = relogio.innerHTML
+                        alert("Você ganhou em "+fimdejogo+" jogadas e levou "+contagem+" segundos!")
+                        começarnovapartida();
+                    }},1000);
 }
 
+// --------------RESETAR O JOGO-----------
+
 function começarnovapartida() {
-    novapartida=prompt("Gostaria de começar uma nova partida? (sim/não)")
+    novapartida=prompt("Gostaria de começar uma nova partida? (sim/não)");
     if(novapartida === "sim"){
-        window.location.reload()
+        window.location.reload();
     }else{
-        alert("Tão ta baum 😅")
+        alert("Tão ta baum 😅");
     }
 }
+
+// -----------TEMPORIZADOR----------------
+
+function temporizador() {
+    if(novapartida == "não"){
+        contagem = contagem;
+        relogio.innerHTML = contagem + "s";
+        return false;
+    }
+    relogio = document.querySelector("time");
+    contagem = contagem + 1;
+    relogio.innerHTML = contagem + "s";
+}
+
+setInterval(temporizador,1000)
