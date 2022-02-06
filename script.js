@@ -43,11 +43,11 @@ imagenscolhidas.sort(comparador);
 
 for(i = 0; i < qtdcartas; i++){          
     div[i] =(`
-    <div class="umacarta" data-cartabla = "${imagenscolhidas[i]}">
+    <div class="umacarta" data-cartabla = "${imagenscolhidas[i]}" data-identifier="card">
         <div class="frente face rotacionar">
-            <img src="arquivosuteis/${imagenscolhidas[i]}.gif">
+            <img src="arquivosuteis/${imagenscolhidas[i]}.gif" data-identifier="front-face">
         </div>
-        <div class="verso face">
+        <div class="verso face" data-identifier="back-face">
             <img src="arquivosuteis/frente1.png">
         </div>
     </div>
