@@ -110,13 +110,18 @@ function finalizarpartida(){ //Alerta de partida finalizada
                         tempofinal = relogio.innerHTML
                         alert("Você ganhou em "+fimdejogo+" jogadas e levou "+contagem+" segundos!")
                         começarnovapartida();
-                    }},1000);
+    }},1000);
 }
 
 // --------------RESETAR O JOGO-----------
 
 function começarnovapartida() {
-    novapartida=prompt("Gostaria de começar uma nova partida? (sim/não)");
+    setTimeout(() => {novapartida=prompt("Gostaria de começar uma nova partida? (sim/não)");
+                     escolha();
+    },1000)
+}
+
+function escolha() {
     if(novapartida === "sim"){
         window.location.reload();
     }else{
