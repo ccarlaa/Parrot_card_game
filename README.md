@@ -1,5 +1,5 @@
 [**English**](#-parrot-card-game)
-[**Portuguese**](#-sobre)
+[**Português**](#-sobre)
 
 ## :parrot: Parrot Card Game
 
