@@ -1,4 +1,7 @@
-## ⚡️ Parrot Card Game
+[**English**](#-parrot-card-game)
+[**Portuguese**](#-sobre)
+
+## :parrot: Parrot Card Game
 
 <p>Front-end application of a memory card game.</p>
 
